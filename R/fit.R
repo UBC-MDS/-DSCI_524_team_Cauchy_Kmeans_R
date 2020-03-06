@@ -1,72 +1,92 @@
-compute_distance <- function(samples, centers){
-  
-#  samples_trans <- as.data.frame(t(samples))
-  
-  k <- dim(centers)[1]
-  num_features <- dim(centers)[2]
-  n_samples <- dim(samples)[1]
-  
-  distance <- data.frame(matrix(0, nrow = n_samples, ncol = k))
-  center_diff <- data.frame(matrix(0, nrow = n_samples, ncol = num_features))
-  
-  for (i in (1:k)){
-    
-    for (j in (1:n_samples)){
-      
-      center_diff[j,] <- samples[j,] - centers[i,]
+library(tidyverse)
+
+compute_distance <- function(x, center){
+  dist <- sum((x - center)^2)
+  dist
+}
+
+
+
+argmin <- function(x){
+  ind <- which.min(x)
+  ind
+}
+
+
+
+
+kmeans <- function(x, k, n_init=10, max_iter=100){
+
+  # initialize inertia to infinity
+  inertia <- 1/0
+  count <- 0
+
+  while (count <= n_init){
+    # initialize k centers
+    centers <- sample_n(x, k)
+
+    # Get distance from samples to all centers
+    n_rows <- dim(x)[1]
+    n_cols <- k
+    distances <- data.frame(matrix(nrow=n_rows, ncol=n_cols))
+
+    # Iterate over max_iter
+    for (i in seq(max_iter)){
+      # Compute distance matrix with current centers
+      for (c in seq(k)){
+        col <- names(distances)[c]
+        center <- centers[c, ]
+        distances[col] <- apply(x, 1, FUN = compute_distance, center = center)
+
+      }
+
+      labels <- apply(distances, 1, argmin)
+
+      # Move the centers to mean of the clusters
+      prev_centers <- centers
+      for (c in seq(k)){
+        centers[c, ] <- apply(x[labels==c,], 2, mean)
+
+      }
+      # Update the inertia
+      updated_inertia <- sum(apply(distances, 1, min))
+
+      # Check if the centers are moving
+      diff_centers <- abs(sum(prev_centers - centers))
+
+      if (diff_centers < 1e-6){
+        #                 print(paste("Converged in", i, "iterations"))
+        break
+      }
+
     }
-    
-    center_diff <- data.frame(center_diff^2)
-    
-    sum_center_diff_sq <- apply(center_diff, 2, FUN=sum)
-    
-    sum_center_diff_sq <- data.frame(sum_center_diff_sq^0.5)
-    
-    distance[, i] = sum_center_diff_sq
-    
+    count <- count + 1
+
   }
-  
-  return(distance)
-  
+
+  # Check if current initialization is better
+  if (updated_inertia < inertia){
+    inertia = updated_inertia
+    centers_final = centers
+    labels_final = labels
+  }
+
+  # Return labels and centers
+  list("labels" = labels_final, "centers" = centers_final)
 }
 
-random_init <- function(samples, k, n_features){
-  
-  centers = data.frame(matrix(0, nrow = k, ncol = n_features))
-  
-  min_feature <- apply(samples, 2, FUN=min)
-  
-  max_feature <- apply(samples, 2, FUN=max)
-  
-  for (i in (1:k))
-  
-    for (j in (1:dim(samples)[1])){
-     
-      centers[i,j] <- sample(samples[,j], 1) 
-    }
-    
-}
 
-#' This takes non-labeled data to perform unsupervised classification
-#' using kmeans algorithm into k clusters.
-#' It returns labels for each data point according to the cluster it belong and also cluster centers
-#'
-#' @param X_train : dataframe, the non-labeled data to be clustered.
-#' @param k : integer vector, single number mentioning the number of clusters the data is to be classified.
-#'
-#' @return indexed list, containing 2 vectors, one with cluster centers coordinates and other with cluster labels for each sample .
-#'
-#' @examples
-#' 
-#' X_train <- data.frame(x1 = c(1, 2, 3, 5, 53, 21, 43),
-#'                x2 = c(1, 2, 3, 5, 53, 21, 43))
-#' k <- c(4)
-#' kmeans <- fit(X_train, k)
-#' kmeans['centers']
-#' kmeans['labels']
+x1 <- rnorm(50, 1, 0.2)
+x2 <- rnorm(50, 2, 0.2)
+x3 <- rnorm(50, 3, 0.2)
+x <- c(x1, x2, x3)
+y <- c(x2, x1, x1)
 
-fit <- function(X_train, k) {
-  
-  
+df <- data.frame(x, y)
+results <- kmeans(df, 3, n_init=2, max_iter=10)
 
-}
+df_results <- df
+df_results$labels <- results$labels
+
+ggplot(df_results, aes(x=x, y=y, color=labels)) +
+  geom_point()
