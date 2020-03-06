@@ -15,7 +15,7 @@ argmin <- function(x){
 
 
 
-kmeans <- function(x, k, n_init=10, max_iter=100){
+fit <- function(x, k, n_init=10, max_iter=100){
 
   # initialize inertia to infinity
   inertia <- 1/0
