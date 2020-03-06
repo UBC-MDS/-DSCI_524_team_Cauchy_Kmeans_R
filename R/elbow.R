@@ -19,6 +19,28 @@
 
 elbow <- function(x, centers){
 
+  # Check if type of data is valid
+  if ((!is_tibble(x)) & (!is.data.frame(x))) {
+    stop("'Data shoud be a tibble or data.frame")
+  }
+
+  # Check if type of centers is valid
+  if (!is.vector(centers)) {
+    stop("'Centers shoud be a vector")
+  }
+
+  # Check if the values in the number of centers are valid
+  if ((min(centers) < 1) | (max(centers) > dim(x)[1])) {
+    stop("Invalid values in list of numbers of clusters,
+                        Number of clusters should be between 1 and number of samples")
+  }
+
+  if (!all(centers == floor(centers))){
+    stop("Number of centers should be integer")
+
+  }
+
+
   inertia <- c()
   for (k in centers){
     # Fit kmeans for nuber of centers k
