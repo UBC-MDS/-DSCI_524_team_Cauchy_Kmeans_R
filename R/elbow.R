@@ -41,6 +41,16 @@ elbow <- function(x, centers){
 
   }
 
+  # Plot the results
+  results <- data.frame("k" = centers, "inertia" = inertia)
 
+  p <- ggplot(results, aes(x = k, y = inertia)) +
+    geom_line() +
+    scale_x_continuous(breaks = seq(length(centers))) +
+    xlab("k") +
+    ylab("Inertia") +
+    ggtitle("k vs Inertia Using Elbow Method")
+
+  list("inertia" = inertia, "plot" = p)
 
 }
