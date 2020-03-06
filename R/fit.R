@@ -75,18 +75,3 @@ kmeans <- function(x, k, n_init=10, max_iter=100){
   list("labels" = labels_final, "centers" = centers_final)
 }
 
-
-x1 <- rnorm(50, 1, 0.2)
-x2 <- rnorm(50, 2, 0.2)
-x3 <- rnorm(50, 3, 0.2)
-x <- c(x1, x2, x3)
-y <- c(x2, x1, x1)
-
-df <- data.frame(x, y)
-results <- kmeans(df, 3, n_init=2, max_iter=10)
-
-df_results <- df
-df_results$labels <- results$labels
-
-ggplot(df_results, aes(x=x, y=y, color=labels)) +
-  geom_point()
