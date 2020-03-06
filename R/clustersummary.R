@@ -20,7 +20,7 @@ library(tidyverse)
 #' cluster_summary(X, kmeans_results[1], kmeans_results[2])
 clustersummary <- function(X, centroids, cluster_assignments) {
   
-  if (max(cluster_assignments) <= length(centroids)){
+  if (max(cluster_assignments) > length(centroids)){
     stop("Cannot have a cluster assignment greater than the total number of clusters")
   }
   
@@ -37,10 +37,10 @@ clustersummary <- function(X, centroids, cluster_assignments) {
   
   for (i in seq(1:n_centroids)) {
     n_assigned[[i]] <- nrow(filter(data, cluster_assignments == i))
-    inertia_list[[i]] <- sum((t(filter(data, cluster_assignments == i)) - t(centroid_df)[, i])^2)
+    inertia_list[[i]] <- sum((t(filter(X, cluster_assignments == i)) - t(centroid_df)[, i])^2)
   }
   summary_df <- mutate(centroid_df, "Num assigned training points" = n_assigned,
-                       "Within cluster inertia" = inertia_list)
+                                    "Within cluster inertia" = inertia_list)
   summary_df
 }
 
