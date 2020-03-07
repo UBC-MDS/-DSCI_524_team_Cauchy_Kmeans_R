@@ -12,3 +12,5 @@ numerical features and includes fit, predict, and summarize functions, as well a
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Suggests: 
+    testthat
