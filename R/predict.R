@@ -1,3 +1,5 @@
+library(tidyverse)
+
 #' Assigns new data points to clusters based on closest centroid. 
 #' 
 #' @param X_new data.frame, new data to assign to clusters
@@ -16,5 +18,19 @@
 #'                    x2 = c(3, 2))
 #' predict(X_new, kmeans_results[1])
 predict <- function(X_new, centroids, distance_metric = "euclidean") {
-
+  for (i in seq(1:length(centroids))) {
+    if(length(centroids[[i]]) != ncol(X_new)) {
+      stop("Centroids, data and cluster assignments must have dimensions (k,m), (n, m), (n, )")
+    }
+  }
+  centroid_df <- as.data.frame(Reduce(rbind, centroids))
+  n_examples <- nrow(X_new)
+  assignments <- seq(1:n_examples)
+  for (i in seq(1:n_examples)) {
+    assignments[[i]] <- which.min(as.vector(colSums((t(centroid_df) - t(X_new)[, i])^2)))
+  }
+  assignments
 }
+
+
+
