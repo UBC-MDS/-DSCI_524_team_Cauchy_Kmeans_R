@@ -1,5 +1,5 @@
 Package: Kmeans
-Title: What the Package Does (One Line, Title Case)
+Title: Kmeans Algorithm Implemented in R
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "First",
@@ -7,9 +7,10 @@ Authors@R:
            role = c("aut", "cre"),
            email = "first.last@example.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+Description: R packages that implement k-means clustering from scratch. This will work on any dataset with valid 
+numerical features and includes fit, predict, and summarize functions, as well as elbow and silhouette methods for hyperparameter “k” optimization.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Suggests: 
-    testthat (>= 2.1.0)
+    testthat
