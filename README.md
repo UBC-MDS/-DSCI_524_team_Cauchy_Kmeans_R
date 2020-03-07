@@ -9,7 +9,7 @@
 
 ### Milestone 2 README
 
-This package will include python packages that implement k-means
+This package will include R packages that implement k-means
 clustering from scratch. This will work on any dataset with valid
 numerical features, and includes fit, predict, and cluster\_summary
 functions, as well as as elbow and silhouette methods for hyperparameter
