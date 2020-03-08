@@ -9,11 +9,12 @@
 
 ### Milestone 2 README
 
-This package will include R packages that implement k-means
-clustering from scratch. This will work on any dataset with valid
-numerical features, and includes fit, predict, and cluster\_summary
-functions, as well as as elbow and silhouette methods for hyperparameter
-“k” optimization.
+This package will include R packages that implement k-means clustering
+from scratch. This will work on any dataset with valid numerical
+features, and includes fit, predict, and cluster\_summary functions, as
+well as as elbow and silhouette methods for hyperparameter “k”
+optimization. A high level overview of each function is given below. See
+each function’s documentation for more details.
 
   - fit: This function classifies the non-labeled data into a given
     number of clusters k using simple KMeans algorithm. It returns
@@ -72,3 +73,8 @@ X_new = data.frame(x1 = c(1, 4),
                    x2 = c(3, 2))
 predict(X_new, kmeans_results[1])
 ```
+
+## Tests
+
+To test that the functions work as intended, run `devtools::test()` in
+the root of the project repo in an Rconsole.
