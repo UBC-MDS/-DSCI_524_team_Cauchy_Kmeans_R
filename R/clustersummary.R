@@ -36,7 +36,7 @@ clustersummary <- function(X, centroids, cluster_assignments) {
   inertia_list <- seq(1:n_centroids)
   
   for (i in seq(1:n_centroids)) {
-    n_assigned[[i]] <- nrow(filter(data, cluster_assignments == i))
+    n_assigned[[i]] <- nrow(filter(X, cluster_assignments == i))
     inertia_list[[i]] <- sum((t(filter(X, cluster_assignments == i)) - t(centroid_df)[, i])^2)
   }
   summary_df <- mutate(centroid_df, "Num assigned training points" = n_assigned,

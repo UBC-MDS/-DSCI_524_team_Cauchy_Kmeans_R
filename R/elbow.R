@@ -3,7 +3,7 @@
 #' values for all cluster centers. Useful for identifying the optimal
 #' number of clusters while using the k-means clustering algorithm.
 #'
-#' @param X data.frame, Input data that is to be clustered
+#' @param x data.frame, Input data that is to be clustered
 #' @param centers : vector, containing all numbers of cluster centers
 #' that are to be tried.
 #'
@@ -16,7 +16,7 @@
 #'                x2 = c(1, 2, 3, 5, 53, 21, 43))
 #' centers <- c(2, 3, 4, 5)
 #' elbow(X, centers)
-
+library(tidyverse)
 elbow <- function(x, centers){
 
   # Check if type of data is valid
@@ -44,14 +44,14 @@ elbow <- function(x, centers){
   inertia <- c()
   for (k in centers){
     # Fit kmeans for nuber of centers k
-    km <- fit(df, k, n_init = 1, max_iter = 10)
+    km <- fit(x, k, n_init = 1, max_iter = 10)
     labels <- km$labels
     centroids <- km$centers
 
     # Calucate the inertia
     inertia_m <- 0
     for (m in seq(k)){
-      cluster_m <- df[labels==m, ]
+      cluster_m <- x[labels==m, ]
       center <- centroids[m, ]
       inertia_m <- inertia_m + sum(apply(cluster_m, 1,
                                          FUN = compute_distance,
@@ -76,3 +76,4 @@ elbow <- function(x, centers){
   list("inertia" = inertia, "plot" = p)
 
 }
+

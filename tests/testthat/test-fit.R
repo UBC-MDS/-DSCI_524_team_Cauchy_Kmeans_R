@@ -33,4 +33,4 @@ tests <- function() {
   #... to do
   
 }
-  
+tests()
