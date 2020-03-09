@@ -7,7 +7,7 @@
 
 <!-- badges: end -->
 
-### Milestone 2 README
+### Milestone 3 README
 
 This package will include R packages that implement k-means clustering
 from scratch. This will work on any dataset with valid numerical
@@ -46,6 +46,10 @@ deepen fundamental understanding of these algorithms.
 
 ## Installation
 
+### This will not work in the current state of the package
+
+Please clone the repository and run the files and functions locally.
+
 You can install the released version of Kmeans from
 [CRAN](https://CRAN.R-project.org) with:
 
@@ -65,13 +69,23 @@ devtools::install_github("UBC-MDS/Kmeans")
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-library(Kmeans)
+#library(Kmeans)
 X = data.frame(x1 = c(1, 2, 3, 5, 53, 21, 43),
                x2 = c(1, 2, 3, 5, 53, 21, 43))
 kmeans_results = fit(X, 2)
 X_new = data.frame(x1 = c(1, 4),
                    x2 = c(3, 2))
 predict(X_new, kmeans_results[1])
+
+X <- data.frame(x1 = c(1, 2, 3, 5, 53, 21, 43),
+                x2 = c(1, 2, 3, 5, 53, 21, 43))
+centers <- c(2, 3, 4, 5)
+inertia <- elbow(X, centers)$inertia
+
+k_vector <- c(2, 3, 4, 5)
+scores <- silhouette(X, k_vector)$scores
+
+cluster_summary(X, kmeans_results[1], kmeans_results[2])
 ```
 
 ## Tests
