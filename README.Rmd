@@ -63,7 +63,7 @@ X = data.frame(x1 = c(1, 2, 3, 5, 53, 21, 43),
 kmeans_results = fit(X, 2)
 X_new = data.frame(x1 = c(1, 4),
                    x2 = c(3, 2))
-predict(X_new, kmeans_results[1])
+predict(X_new, kmeans_results$centers)
 
 X <- data.frame(x1 = c(1, 2, 3, 5, 53, 21, 43),
                 x2 = c(1, 2, 3, 5, 53, 21, 43))
@@ -73,7 +73,7 @@ inertia <- elbow(X, centers)$inertia
 k_vector <- c(2, 3, 4, 5)
 scores <- silhouette(X, k_vector)$scores
 
-cluster_summary(X, kmeans_results[1], kmeans_results[2])
+cluster_summary(X, kmeans_results$centers, kmeans_results$labels)
 ```
 
 ## Tests
