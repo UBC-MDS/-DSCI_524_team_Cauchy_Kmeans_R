@@ -20,7 +20,7 @@ test_that("Silhouette should return list type", {
   expect_equal(typeof(silhouette(X, k_vector)), "list")
 })
 
-test_that("Silhouette should return correct amount of scores", {
+test_that("Length of scores vector from silhouette should match the k vector length", {
   expect_equal(length(silhouette(X, k_vector)$scores), length(k_vector))
 })
 
