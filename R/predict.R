@@ -16,11 +16,22 @@ library(tidyverse)
 #' kmeans_results = fit(X, 2)
 #' X_new = data.frame(x1 = c(1, 4),
 #'                    x2 = c(3, 2))
-#' predict(X_new, kmeans_results[1])
-predict <- function(X_new, centroids, distance_metric = "euclidean") {
+#' predict(X_new, kmeans_results$centers)
+predict <- function(X_new, centroids) {
   for (i in seq(1:length(centroids))) {
     if(length(centroids[[i]]) != ncol(X_new)) {
       stop("Centroids, data and cluster assignments must have dimensions (k,m), (n, m), (n, )")
+    }
+  }
+  for (i in seq(1:length(centroids))) {
+    if(!is.numeric(centroids[[i]])) {
+      stop("Centroid coordinates must be numeric")
+    }
+  }
+  
+  for (i in seq(1:ncol(X_new))) {
+    if(!is.numeric(X_new[[i]])) {
+      stop("Data must be numeric")
     }
   }
   centroid_df <- as.data.frame(Reduce(rbind, centroids))
