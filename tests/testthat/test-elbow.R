@@ -9,7 +9,7 @@ tests <- function() {
 
   df <- data.frame(x, y)
 
-  centers <- c(1, 2, 3, 4, 5)
+  centers <- c(2, 2, 3, 4, 5)
 
   #tests
   test_that("Function should return a list with 2 objects", {
@@ -20,12 +20,12 @@ tests <- function() {
     expect_equal(length(elbow(df, centers)$inertia), length(centers))
   })
 
-  #test_that("Plot object returned should be of type list", {
-  #  expect_equal(typeof(elbow(df, centers)$plot), "list")
-  #})
+  test_that("Plot object returned should be of type list", {
+    expect_equal(typeof(elbow(df, centers)$plot), "list")
+  })
 
-  #test_that("Second object in the list should be a ggplot object", {
-  #  expect_equal(class(elbow(df, centers)$plot)[2], "ggplot")
-  #})
+  test_that("Second object in the list should be a ggplot object", {
+    expect_equal(class(elbow(df, centers)$plot)[2], "ggplot")
+  })
 }
 tests()
