@@ -40,7 +40,7 @@ elbow <- function(x, centers){
 
   }
 
-
+  j <- 1
   inertia <- c()
   for (k in centers){
     # Fit kmeans for nuber of centers k
@@ -57,9 +57,11 @@ elbow <- function(x, centers){
                                          FUN = compute_distance,
                                          center = center))
 
-      inertia[k] <- inertia_m
+
 
     }
+    inertia[j] <- inertia_m
+    j <- j + 1
 
   }
 
