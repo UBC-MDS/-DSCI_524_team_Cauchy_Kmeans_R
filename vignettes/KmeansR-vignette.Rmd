@@ -39,7 +39,7 @@ X_train <- data.frame(x, y)
 ## Fit the data set using `fit()`
 Let's fit using the data to get the labels and centers.
 
-```{r fit, fig.width=10, fig.height=7}
+```{r fit, fig.width=6, fig.height=5}
 km <- fit(X_train, k = 3)
 labels <- km$labels
 centers <- km$centers
@@ -60,7 +60,7 @@ ggplot(df_results, aes(x=x, y=y, color=factor(labels))) +
 
 ## Evaluate different number of clusters sing `elbow()` function
 
-```{r elbow, fig.width=10, fig.height=7}
+```{r elbow, fig.width=6, fig.height=5}
 centers <- c( 1, 2, 3, 4, 5, 6)
 el <- elbow(X_train, centers)
 inertia <- el$inertia
@@ -73,7 +73,7 @@ The inertia plot has a sharp bend at k=3 suggesting the optimal number of cluste
 
 ## Evaluate different number of clusters using `silhouette()` function
 
-```{r silhouette, fig.width=10, fig.height=7}
+```{r silhouette, fig.width=6, fig.height=5}
 centers <- c( 1, 2, 3, 4)
 sl <- silhouette(X_train, centers)
 scores <- sl$scores
