@@ -15,5 +15,8 @@ LazyData: true
 Suggests: 
     testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    covr
 VignetteBuilder: knitr
+URL: https://github.com/UBC-MDS/KmeansR
+BugReports: https://github.com/UBC-MDS/KmeansR/issues
