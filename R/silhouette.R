@@ -15,6 +15,18 @@
 #' k_vector <- c(2, 3, 4, 5)
 #' silhouette(X, k_vector)
 silhouette <- function(X, k_vector) {
+  for (i in 1:length(k_vector)) {
+    if(!is.numeric(k_vector[i])) {
+      stop("k_vector must be numeric")
+    }
+  }
+  for (i in 1:length(X)) {
+    for (j in 1:length(X[i])) {
+      if(!is.numeric(X[i, j])) {
+        stop("X must be numeric")
+      }
+    }
+  }
   scores = rep(0, length(k_vector))
   for (i in 1:length(k_vector)){
     score = sil_score(X, fit(X, k_vector[i])$labels)
