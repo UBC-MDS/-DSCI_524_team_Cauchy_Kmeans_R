@@ -4,8 +4,12 @@ tests <- function() {
   data <- data.frame("x1" = c(1, 4, 3, 5, 1, 6, 1, 4, 15, 14, 6, 3),
                      "x2" = c(1, 2, 3, 5, 1, 6, 8, 4, 15, 2,  6, 3),
                      "x3" = c(1, 2, 3, 5, 7, 6, 3, 4, 15, 2,  6, 3))
+  data2 <- data.frame("x1" = c(1, 4, 3, 5, 1, 6, 1, 4, 15, 14, 6, 3),
+                     "x2" = c(1, 2, 3, 5, 1, 6, 8, 4, 15, 2,  6, 3),
+                     "x3" = c("a", 2, 3, 5, 7, 6, 3, 4, 15, 2,  6, 3))
   centroids <- list(c(1,2,3), c(1,6,10), c(15,2,6), c(1,10,11), c(3,10,11))
   centroids2 <- list(c(1,2,3), c(1,6,10), c(15,2,6), c(1,10,11), c(3,10,11, 12))
+  centroids3 <- list(c("a",2,3), c(1,6,10), c(15,2,6), c(1,10,11), c(3,10,11))
   cluster_assignments <- c(1, 2, 3, 2, 2, 3, 1, 1, 1, 1, 2, 5)
   cluster_assignments2 <- c(1, 2, 3, 2, 2, 3, 1, 1, 1, 1, 2, 15)
   cluster_assignments3 <- c(1)
@@ -39,6 +43,16 @@ tests <- function() {
     expect_error(clustersummary(data, centroids, cluster_assignments3))
   })
   
+  test_that("Data must be numeric", {
+    expect_error(clustersummary(data2, centroids, cluster_assignments))
+  })
+  
+  test_that("Centroid coordinates must be numeric", {
+    expect_error(clustersummary(data, centroids3, cluster_assignments))
+  })
+  
 }
 
 tests()
+
+
