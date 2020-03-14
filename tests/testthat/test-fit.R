@@ -13,8 +13,8 @@ iter <- 6.3
 
 test_df3 <- data.frame('X1' = c(0,0,0,0,0,0,0,0,0,0), 'X2' = c(1,1,1,1,1,1,1,1,1,1))
 
-km1 <- fit(test_d3, 1)
-km2 <- fit(test_d1, 2)
+km1 <- fit(test_df3, 1)
+km2 <- fit(test_df1, 2)
 label2 <- c(0,0,0,0,0,0,0, 1,1,1,1,1,1,1)
 center2 <- list(c(4,4), c(11,11))
 
