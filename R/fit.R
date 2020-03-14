@@ -110,6 +110,10 @@ fit <- function(x, k, n_init=10, max_iter=100){
     inertia = updated_inertia
     centers_final = centers
     labels_final = labels
+    
+    if (inertia == 0){
+      break
+    }
   }
 
   # Return labels and centers
