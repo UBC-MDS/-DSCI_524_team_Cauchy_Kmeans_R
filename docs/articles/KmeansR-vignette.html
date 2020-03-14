@@ -105,7 +105,7 @@
 <div id="data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#data" class="anchor"></a>Data</h2>
-<p>To explore the Kmeans package, we will use the iris dataset. This dataset contains features from 4 different variesties of Iris flowers. This is a classical dataset for classification. Let’s explore how to cluster this dataset using the Kmeans package.</p>
+<p>To explore the Kmeans package, we will use a randomly generated dataset having 3 clustesr. Let’s explore how to cluster this dataset using the Kmeans package.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">x1 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">50</span>, <span class="dv">1</span>, <span class="fl">0.2</span>)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">x2 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">50</span>, <span class="dv">2</span>, <span class="fl">0.2</span>)</a>
 <a class="sourceLine" id="cb2-3" data-line-number="3">x3 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">50</span>, <span class="dv">3</span>, <span class="fl">0.2</span>)</a>
@@ -125,18 +125,18 @@
 <a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="st">"Cluster centers are: "</span>)</a>
 <a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; [1] "Cluster centers are: "</span></a>
 <a class="sourceLine" id="cb3-6" data-line-number="6">centers</a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt;           x        y</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; 1 0.8592525 1.895557</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; 2 2.4841097 0.965830</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; 3 1.1397674 2.070766</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt;           x         y</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; 1 2.9803755 0.9668848</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; 2 0.9640346 1.9814926</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; 3 1.9702088 0.9610680</span></a>
 <a class="sourceLine" id="cb3-11" data-line-number="11"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="st">"Labels are : "</span>)</a>
 <a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt; [1] "Labels are : "</span></a>
 <a class="sourceLine" id="cb3-13" data-line-number="13">labels</a>
-<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt;   [1] 1 1 3 1 1 1 3 1 1 1 1 3 1 3 3 3 3 3 1 3 3 3 1 1 3 3 3 1 3 3 1 1 1 1 3 3 3</span></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt;  [38] 1 3 3 3 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 2</span></a>
-<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt;  [75] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2</span></a>
-<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="co">#&gt; [112] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2</span></a>
-<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="co">#&gt; [149] 2 2</span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt;   [1] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt;  [38] 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3</span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt;  [75] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 1 1 1 1 1 1 1 1 1 1 1</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="co">#&gt; [112] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="co">#&gt; [149] 1 1</span></a>
 <a class="sourceLine" id="cb3-19" data-line-number="19"></a>
 <a class="sourceLine" id="cb3-20" data-line-number="20"><span class="co"># Plot the clusters</span></a>
 <a class="sourceLine" id="cb3-21" data-line-number="21">df_results &lt;-<span class="st"> </span>X_train</a>

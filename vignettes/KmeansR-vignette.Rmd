@@ -24,7 +24,7 @@ This package implements the K-Means algorith for clustering. This will work on a
 
 
 ## Data
-To explore the Kmeans package, we will use the iris dataset. This dataset contains features from 4 different variesties of Iris flowers. This is a classical dataset for classification. Let's explore how to cluster this dataset using the Kmeans package.
+To explore the Kmeans package, we will use a randomly generated dataset having 3 clustesr. Let's explore how to cluster this dataset using the Kmeans package.
 
 ```{r data}
 x1 <- rnorm(50, 1, 0.2)
