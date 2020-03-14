@@ -18,13 +18,13 @@ knitr::opts_chunk$set(
 library(Kmeans)
 library(tidyverse)
 ```
-## Introduction to the Kmeans Package
-This document introduces you to the Kmeans package. This is different from the Kmeans package available in base R. This package is created as a part of a course project to learn the fundamentals of collborative software development. 
-This package implements the K-Means algorith for clustering. This will work on any dataset with valid numerical features, and includes fit, predict, and cluster_summary functions, as well as as elbow and silhouette methods for hyperparameter “k” optimization
+## Introduction to the KmeansR Package
+This documentation provides an introduction to the KmeansR package. This package is independent from the Kmeans package available in base R. This package was created as a part of a course project to learn the fundamentals of collaborative software development. 
+This package implements the K-Means algorithm for clustering, and provides many additional helpful functions. This will work on any purely numerical dataset with valid features, and includes fit, predict, and cluster_summary functions, as well as as elbow and silhouette methods for hyperparameter “k” optimization.
 
 
 ## Data
-To explore the Kmeans package, we will use a randomly generated dataset having 3 clustesr. Let's explore how to cluster this dataset using the Kmeans package.
+To explore the Kmeans package, we will use a randomly generated dataset with 3 clusters. Let's explore how to cluster this dataset using the KmeansR package.
 
 ```{r data}
 x1 <- rnorm(50, 1, 0.2)
@@ -36,17 +36,13 @@ y <- c(x2, x1, x1)
 X_train <- data.frame(x, y)
 ```
 
-## Fit the data set using `fit()`
+## Fitting the data set using `fit()`
 Let's fit using the data to get the labels and centers.
 
 ```{r fit, fig.width=6, fig.height=5}
 km <- fit(X_train, k = 3)
 labels <- km$labels
 centers <- km$centers
-print("Cluster centers are: ")
-centers
-print("Labels are : ")
-labels
 
 # Plot the clusters
 df_results <- X_train
@@ -56,7 +52,34 @@ ggplot(df_results, aes(x=x, y=y, color=factor(labels))) +
     geom_point() +
     ggtitle("Data after clustering")
 ```
+## Cluster Summary
+This gives a summary of the clusters
 
+```{r summary, fig.width=6, fig.height=5}
+clustersummary(X_train, centers, labels)
+```
+
+## Predicting data given labels
+Here we will randomly regenerate the data using the same methods and recluster with the previously found cluster centers.
+
+```{r predict, fig.width=6, fig.height=5}
+x1 <- rnorm(50, 1, 0.2)
+x2 <- rnorm(50, 2, 0.2)
+x3 <- rnorm(50, 3, 0.2)
+x <- c(x1, x2, x3)
+y <- c(x2, x1, x1)
+
+X_test <- data.frame(x, y)
+
+labels <- predict(X_test, centers)
+
+df_results <- X_test
+df_results$labels <- labels
+
+ggplot(df_results, aes(x=x, y=y, color=factor(labels))) +
+    geom_point() +
+    ggtitle("Data after clustering")
+```
 
 ## Evaluate different number of clusters sing `elbow()` function
 
