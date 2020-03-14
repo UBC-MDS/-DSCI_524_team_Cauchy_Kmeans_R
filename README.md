@@ -5,6 +5,7 @@
 
 <!-- badges: start -->
 
+[![codecov](https://codecov.io/gh/UBC-MDS/KmeansR/branch/master/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/KmeansR)
 <!-- badges: end -->
 
 ### Milestone 3 README
