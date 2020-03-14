@@ -1,0 +1,85 @@
+---
+title: "KmeansR-vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{KmeansR-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(Kmeans)
+library(tidyverse)
+```
+## Introduction to the Kmeans Package
+This document introduces you to the Kmeans package. This is different from the Kmeans package available in base R. This package is created as a part of a course project to learn the fundamentals of collborative software development. 
+This package implements the K-Means algorith for clustering. This will work on any dataset with valid numerical features, and includes fit, predict, and cluster_summary functions, as well as as elbow and silhouette methods for hyperparameter “k” optimization
+
+
+## Data
+To explore the Kmeans package, we will use a randomly generated dataset having 3 clustesr. Let's explore how to cluster this dataset using the Kmeans package.
+
+```{r data}
+x1 <- rnorm(50, 1, 0.2)
+x2 <- rnorm(50, 2, 0.2)
+x3 <- rnorm(50, 3, 0.2)
+x <- c(x1, x2, x3)
+y <- c(x2, x1, x1)
+
+X_train <- data.frame(x, y)
+```
+
+## Fit the data set using `fit()`
+Let's fit using the data to get the labels and centers.
+
+```{r fit, fig.width=6, fig.height=5}
+km <- fit(X_train, k = 3)
+labels <- km$labels
+centers <- km$centers
+print("Cluster centers are: ")
+centers
+print("Labels are : ")
+labels
+
+# Plot the clusters
+df_results <- X_train
+df_results$labels <- labels
+
+ggplot(df_results, aes(x=x, y=y, color=factor(labels))) +
+    geom_point() +
+    ggtitle("Data after clustering")
+```
+
+
+## Evaluate different number of clusters sing `elbow()` function
+
+```{r elbow, fig.width=6, fig.height=5}
+centers <- c( 1, 2, 3, 4, 5, 6)
+el <- elbow(X_train, centers)
+inertia <- el$inertia
+plot <- el$plot
+plot
+ 
+```
+
+The inertia plot has a sharp bend at k=3 suggesting the optimal number of clusters in our dataset it 3.  
+
+## Evaluate different number of clusters using `silhouette()` function
+
+```{r silhouette, fig.width=6, fig.height=5}
+centers <- c( 1, 2, 3, 4)
+sl <- silhouette(X_train, centers)
+scores <- sl$scores
+plot <- sl$plot
+plot
+```
+
+
+As we can see, the silhouette score is the highest at k = 3, which is the optimal number of clusters in out dataset.  

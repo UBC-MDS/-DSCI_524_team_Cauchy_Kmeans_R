@@ -4,8 +4,8 @@
 #' number of clusters while using the k-means clustering algorithm.
 #'
 #' @param x data.frame, Input data that is to be clustered
-#' @param centers : vector, containing all numbers of cluster centers
-#' that are to be tried.
+#' @param centers : vector, containing all the first `n` numbers of
+#' cluster centers #' that are to be tried.
 #'
 #' @return list, containing inertia values for all numbers of cluster centers
 #' and a ggplot object of number of clusters vs inertia.
