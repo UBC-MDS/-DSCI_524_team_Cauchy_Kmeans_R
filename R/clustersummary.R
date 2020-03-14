@@ -17,7 +17,7 @@ library(tidyverse)
 #' X = data.frame(x1 = c(1, 2, 3, 5, 53, 21, 43),
 #'                x2 = c(1, 2, 3, 5, 53, 21, 43))
 #' kmeans_results = fit(X, 2)
-#' cluster_summary(X, kmeans_results[1], kmeans_results[2])
+#' cluster_summary(X, kmeans_results$centers, kmeans_results$labels)
 clustersummary <- function(X, centroids, cluster_assignments) {
   
   if (max(cluster_assignments) > length(centroids)){
@@ -27,6 +27,18 @@ clustersummary <- function(X, centroids, cluster_assignments) {
   for (i in seq(1:length(centroids))) {
     if(length(centroids[[i]]) != ncol(X) || (nrow(X) != length(cluster_assignments))) {
       stop("Centroids, data and cluster assignments must have dimensions (k,m), (n, m), (n, )")
+    }
+  }
+  
+  for (i in seq(1:length(centroids))) {
+    if(!is.numeric(centroids[[i]])) {
+      stop("Centroid coordinates must be numeric")
+    }
+  }
+  
+  for (i in seq(1:ncol(X))) {
+    if(!is.numeric(X[[i]])) {
+      stop("Data must be numeric")
     }
   }
   
@@ -43,4 +55,5 @@ clustersummary <- function(X, centroids, cluster_assignments) {
                                     "Within cluster inertia" = inertia_list)
   summary_df
 }
+
 
