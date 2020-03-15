@@ -1,4 +1,6 @@
 library(testthat)
+library(tidyverse)
+
 tests <- function() {
   #helper data
   data <- data.frame("x1" = c(1, 4, 3, 5, 1, 6, 1, 4, 15, 14, 6, 3),

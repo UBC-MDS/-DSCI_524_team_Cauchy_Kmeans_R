@@ -1,4 +1,5 @@
 library(testthat)
+library(tidyverse)
 
 tests <- function() {
   x1 <- rnorm(5, 1, 0.2)

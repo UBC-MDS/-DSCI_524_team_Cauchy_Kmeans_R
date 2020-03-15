@@ -1,4 +1,5 @@
 library(testthat)
+library(tidyverse)
 
 #helper data
 test_df1 <- data.frame("x1" = seq(1:14),

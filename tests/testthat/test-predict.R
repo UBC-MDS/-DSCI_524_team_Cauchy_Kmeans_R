@@ -1,4 +1,5 @@
 library(testthat)
+library(tidyverse)
 
 tests <- function() {
   #helper data
