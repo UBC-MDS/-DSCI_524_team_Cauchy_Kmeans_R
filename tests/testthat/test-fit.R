@@ -1,6 +1,8 @@
 library(testthat)
 library(tidyverse)
 
+context("fit")
+
 #helper data
 test_df1 <- data.frame("x1" = seq(1:14),
                    "x2" = seq(1:14))

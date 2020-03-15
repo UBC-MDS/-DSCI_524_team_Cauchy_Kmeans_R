@@ -1,6 +1,8 @@
 library(testthat)
 library(tidyverse)
 
+context("predict")
+
 tests <- function() {
   #helper data
   data_new <- data.frame("x1" = c(1, 1,  15, 1,  3),
