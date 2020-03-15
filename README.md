@@ -4,7 +4,7 @@
 # Kmeans
 
 <!-- badges: start -->
-
+![](https://github.com/UBC-MDS/KmeansR/workflows/build/badge.svg)
 [![codecov](https://codecov.io/gh/UBC-MDS/KmeansR/branch/master/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/KmeansR)
 <!-- badges: end -->
 
