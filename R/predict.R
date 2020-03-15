@@ -18,9 +18,18 @@ library(tidyverse)
 #'                    x2 = c(3, 2))
 #' predict(X_new, kmeans_results$centers)
 predict <- function(X_new, centroids) {
+  
+  if (class(centroids) == "data.frame") {
+    centroids2 <- list()
+    for (i in seq(1:nrow(centroids))) {
+      centroids2[[i]] <- c(t(centroids[i, ]))
+    }
+    centroids <- centroids2
+  }
+  
   for (i in seq(1:length(centroids))) {
     if(length(centroids[[i]]) != ncol(X_new)) {
-      stop("Centroids, data and cluster assignments must have dimensions (k,m), (n, m), (n, )")
+      stop("Centroids and data must have dimensions (k,m), (n, m)")
     }
   }
   for (i in seq(1:length(centroids))) {
@@ -42,6 +51,5 @@ predict <- function(X_new, centroids) {
   }
   assignments
 }
-
 
 
