@@ -69,6 +69,7 @@ jobs:
           remotes::install_cran("rcmdcheck")
           install.packages('tidyverse')
           install.packages('testthat')
+          install.packages('devtools')
         shell: Rscript {0}
 
       - name: Check
