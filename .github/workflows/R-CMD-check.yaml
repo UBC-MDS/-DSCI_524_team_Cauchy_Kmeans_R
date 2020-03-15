@@ -85,6 +85,5 @@ jobs:
       #    path: check
 
       - name: Test coverage
-        if: matrix.config.os == 'windows-latest' && matrix.config.r == '3.6'
         run: covr::codecov()
         shell: Rscript {0}
