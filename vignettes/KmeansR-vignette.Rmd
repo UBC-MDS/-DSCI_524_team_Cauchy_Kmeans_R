@@ -92,12 +92,12 @@ plot
  
 ```
 
-The inertia plot has a sharp bend at k=3 suggesting the optimal number of clusters in our dataset it 3.  
+The inertia plot has a sharp bend at k=3 suggesting the optimal number of clusters in our dataset is 3.  
 
 ## Evaluate different number of clusters using `silhouette()` function
 
 ```{r silhouette, fig.width=6, fig.height=5}
-centers <- c( 1, 2, 3, 4)
+centers <- c(2, 3, 4)
 sl <- silhouette(X_train, centers)
 scores <- sl$scores
 plot <- sl$plot
