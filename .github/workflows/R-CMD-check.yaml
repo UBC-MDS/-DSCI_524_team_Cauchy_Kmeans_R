@@ -43,6 +43,11 @@ jobs:
       - name: Query dependencies
         run: |
           install.packages('remotes')
+          install.packages('tidyverse')
+          install.packages('testthat')
+          install.packages('devtools')
+          install.packages('covr')
+          install.packages('remotes')
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), "depends.Rds", version = 2)
         shell: Rscript {0}
 
@@ -67,9 +72,6 @@ jobs:
         run: |
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
-          install.packages('tidyverse')
-          install.packages('testthat')
-          install.packages('devtools')
         shell: Rscript {0}
 
       - name: Check
