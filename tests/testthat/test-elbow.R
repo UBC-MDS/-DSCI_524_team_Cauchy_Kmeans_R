@@ -1,4 +1,7 @@
 library(testthat)
+library(tidyverse)
+
+context("elbow")
 
 tests <- function() {
   x1 <- rnorm(5, 1, 0.2)

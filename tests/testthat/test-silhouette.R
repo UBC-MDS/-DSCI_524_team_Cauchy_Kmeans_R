@@ -1,4 +1,8 @@
 library(testthat)
+library(tidyverse)
+
+context("silhouette")
+
 # Helper data
 X <- data.frame(x1 = c(1, 2, 3, 10, 11, 12), x2 = c(1, 2, 3, 10, 11, 12))
 X2 <- data.frame(x1 = c(1, 2, 3, 10, 11, 12), x2 = c(1, 2, 3, "sdafda", 11, 12))

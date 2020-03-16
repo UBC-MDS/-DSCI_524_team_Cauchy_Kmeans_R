@@ -20,6 +20,14 @@ library(tidyverse)
 #' cluster_summary(X, kmeans_results$centers, kmeans_results$labels)
 clustersummary <- function(X, centroids, cluster_assignments) {
   
+  if (class(centroids) == "data.frame") {
+    centroids2 <- list()
+    for (i in seq(1:nrow(centroids))) {
+      centroids2[[i]] <- c(t(centroids[i, ]))
+    }
+    centroids <- centroids2
+  }
+  
   if (max(cluster_assignments) > length(centroids)){
     stop("Cannot have a cluster assignment greater than the total number of clusters")
   }
@@ -55,5 +63,4 @@ clustersummary <- function(X, centroids, cluster_assignments) {
                                     "Within cluster inertia" = inertia_list)
   summary_df
 }
-
 
