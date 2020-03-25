@@ -14,10 +14,11 @@ library(tidyverse)
 #'
 #' @examples
 #' library(KMeans)
+#' library(tidyverse)
 #' X = data.frame(x1 = c(1, 2, 3, 5, 53, 21, 43),
 #'                x2 = c(1, 2, 3, 5, 53, 21, 43))
 #' kmeans_results = fit(X, 2)
-#' cluster_summary(X, kmeans_results$centers, kmeans_results$labels)
+#' clustersummary(X, kmeans_results$centers, kmeans_results$labels)
 clustersummary <- function(X, centroids, cluster_assignments) {
   
   if (class(centroids) == "data.frame") {
