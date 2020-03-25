@@ -27,10 +27,6 @@ tests <- function() {
     expect_equal(predict(data_new, centroids), c(1, 2, 3, 4, 5))
   })
   
-  test_that("Points with same coordinates as centroids should be assigned to that centroid", {
-    expect_equal(predict(data_new, centroids), c(1, 2, 3, 4, 5))
-  })
-  
   test_that("Dimensions of centroids must be the same as dimension of data", {
     expect_error(predict(data_new, centroids2))
   })
