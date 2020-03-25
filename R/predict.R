@@ -4,13 +4,12 @@ library(tidyverse)
 #' 
 #' @param X_new data.frame, new data to assign to clusters
 #' @param centroids : data.frame, containing centroid coordinates
-#' @param distance_metric : string, distance metric to measure proximity of data to cluster centers.
-#'        Can take on values: "euclidean" (default), "manhattan", "mahalanobis"
 #'
 #' @return vector, assigned clusters for each point in X_new
 #'
 #' @examples
 #' library(KMeans)
+#' library(tidyverse)
 #' X = data.frame(x1 = c(1, 2, 3, 5, 53, 21, 43),
 #'                x2 = c(1, 2, 3, 5, 53, 21, 43))
 #' kmeans_results = fit(X, 2)
