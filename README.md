@@ -9,7 +9,7 @@
 [![codecov](https://codecov.io/gh/UBC-MDS/KmeansR/branch/master/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/KmeansR)
 <!-- badges: end -->
 
-### Milestone 3 README
+### Package description
 
 This package consists of R functions that implement k-means clustering
 from scratch. This will work on any dataset with valid numerical
@@ -68,6 +68,7 @@ First, load the required pacakges and `fit` the data:
 ``` r
 library(Kmeans)
 library(tidyverse)
+library(dplyr)
 
 X = data.frame(x1 = c(1, 2, 3, 5, 53, 21, 43),
                x2 = c(1, 2, 3, 5, 53, 21, 43))
