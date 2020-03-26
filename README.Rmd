@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 
-### Milestone 3 README
+### Package description
 
 This package consists of R functions that implement k-means clustering from scratch. This will work on any dataset with valid numerical features, and includes fit, predict, and clustersummary functions, as well as elbow and silhouette methods for hyperparameter “k” optimization. A high level overview of each function is given below. See each function's documentation for more details.
 
@@ -59,6 +59,7 @@ First, load the required pacakges and `fit` the data:
 ```r
 library(Kmeans)
 library(tidyverse)
+library(dplyr)
 
 X = data.frame(x1 = c(1, 2, 3, 5, 53, 21, 43),
                x2 = c(1, 2, 3, 5, 53, 21, 43))
