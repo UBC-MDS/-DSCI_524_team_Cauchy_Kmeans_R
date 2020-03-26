@@ -1,5 +1,4 @@
 library(tidyverse)
-library(dplyr)
 
 #' This takes all the samples points and the center coordinates to compute the distance of all the samples from the center.
 #'
