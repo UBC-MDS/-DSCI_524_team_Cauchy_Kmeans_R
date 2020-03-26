@@ -33,5 +33,5 @@ test_that("k_vector must be numeric", {
 })
 
 test_that("X must be numeric", {
-  expect_error(silhouette(X2, k_vector1))
+  expect_error(silhouette(X2, k_vector))
 })

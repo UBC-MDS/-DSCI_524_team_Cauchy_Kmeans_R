@@ -17,6 +17,7 @@ tests <- function() {
   centroids <- list(c(1,2,3), c(1,6,10), c(15,2,6), c(1,10,11), c(3,10,11))
   centroids2 <- list(c(1,2,3), c(1,6,10), c(15,2,6), c(1,10,11), c(3,10,11,12))
   centroids3 <- list(c("a",2,3), c(1,6,10), c(15,2,6), c(1,10,11), c(3,10,11))
+  centroids4 <- data.frame(c(1,2,3,4,5), c(1,2,3,6,10), c(15,1,3,2,6))
   
   #tests
   test_that("Each points in new data needs to be assigned a centroid", {
@@ -37,6 +38,10 @@ tests <- function() {
   
   test_that("Centroid coordinates must be numeric", {
     expect_error(predict(data_new, centroids3))
+  })
+  
+  test_that("Centroid may be a dataframe", {
+    expect_equal(length(predict(data_new2, centroids4)), nrow(data_new2))
   })
   
 }

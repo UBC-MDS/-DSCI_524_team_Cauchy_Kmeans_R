@@ -11,8 +11,11 @@ tests <- function() {
   y <- c(x2, x1, x1)
 
   df <- data.frame(x, y)
+  df2 <- c("Aaaa")
 
   centers <- c( 2, 3, 4, 5)
+  centers2 <- c(0, 100000, 2, 2)
+  centers3 <- c(2.1, 3, 4, 5)
 
   #tests
   test_that("Function should return a list with 2 objects", {
@@ -30,5 +33,22 @@ tests <- function() {
   test_that("Second object in the list should be a ggplot object", {
     expect_equal(class(elbow(df, centers)$plot)[2], "ggplot")
   })
+  
+  test_that("X must be a tibble or a dataframe", {
+    expect_error(elbow(df2, centers))
+  })
+  
+  test_that("Centers must be a vector", {
+    expect_error(elbow(df, data.frame(centers)))
+  })
+  
+  test_that("Center labels must be valid", {
+    expect_error(elbow(df, centers2))
+  })
+  
+  test_that("Center labels must be numeric", {
+    expect_error(elbow(df, centers3))
+  })
+  
 }
 tests()
