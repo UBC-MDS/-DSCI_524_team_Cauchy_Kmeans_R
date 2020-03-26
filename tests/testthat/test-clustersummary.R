@@ -14,6 +14,7 @@ tests <- function() {
   centroids <- list(c(1,2,3), c(1,6,10), c(15,2,6), c(1,10,11), c(3,10,11))
   centroids2 <- list(c(1,2,3), c(1,6,10), c(15,2,6), c(1,10,11), c(3,10,11, 12))
   centroids3 <- list(c("a",2,3), c(1,6,10), c(15,2,6), c(1,10,11), c(3,10,11))
+  centroids4 <- data.frame(c(1,2,3,4,5), c(1,2,3,6,10), c(15,1,3,2,6))
   cluster_assignments <- c(1, 2, 3, 2, 2, 3, 1, 1, 1, 1, 2, 5)
   cluster_assignments2 <- c(1, 2, 3, 2, 2, 3, 1, 1, 1, 1, 2, 15)
   cluster_assignments3 <- c(1)
@@ -53,6 +54,10 @@ tests <- function() {
   
   test_that("Centroid coordinates must be numeric", {
     expect_error(clustersummary(data, centroids3, cluster_assignments))
+  })
+  
+  test_that("Centroids can be a dataframe", {
+    expect_equal(sum(clustersummary(data, centroids4, cluster_assignments)[4]), nrow(data))
   })
   
 }
